@@ -1,7 +1,33 @@
+body {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
 h1 {
     text-align: center;
 }
 
 h1, h2 {
-    color: rgb(0, 0, 103);
+    color: rgb(0, 0, 120);
+}
+
+div, form, button {
+    white-space:nowrap;
+}
+.head-button {
+    font-weight: bold;
+    margin-left: 4px;
+    margin-bottom: 10px;
+}
+
+button {
+    color: darkgreen;
+    background-color: rgb(174, 174, 174);
+    border: 4px solid transparent;
+    border-radius: 4px;
+    font-size: large;
+}
+
+td {
+    border: 1px solid rgb(174, 174, 174);
+    padding: 2px;
 }
