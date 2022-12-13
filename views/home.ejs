@@ -4,20 +4,16 @@
         <link rel="stylesheet" href="/css/style.css">
     </head>
     <body>
-
         <h1>IT Academy</h1>
-
         <h2>Formations disponibles</h2>
-
         <div>
             <form action="/cart" method="POST">
                 <button class="head-button" id="Panier">Voir le panier</button>
             </form>
-            <form action="/connect" method="POST">
+            <form action="/login" method="POST">
                 <button class="head-button" id="Connecter">Se connecter</button>
             </form>
         </div>
-
         <table>
             <tbody>
                 <tr>
@@ -35,7 +31,7 @@
                     <td><%= formations[i].price %></td>
                     <td><%= formations[i].start %></td>
                     <td><%= formations[i].end %></td>
-                    <td><button id="Subscribe">S'inscrire</button></td>
+                    <td><form action="/add" method="POST"><button id="Subscribe">S'inscrire</button></form></td>
                 </tr>
                 <% } %>
             </tbody>

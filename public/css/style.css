@@ -6,17 +6,19 @@ h1 {
     text-align: center;
 }
 
-h1, h2 {
+h1, h2, h3 {
     color: rgb(0, 0, 120);
 }
 
-div, form, button {
-    white-space:nowrap;
-}
-.head-button {
+.head-button, .cart-input {
     font-weight: bold;
     margin-left: 4px;
     margin-bottom: 10px;
+    color: darkgreen;
+    background-color: rgb(174, 174, 174);
+    border: 4px solid transparent;
+    border-radius: 4px;
+    font-size: large;
 }
 
 button {

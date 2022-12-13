@@ -19,17 +19,39 @@ var connection = mysql.createConnection({
 connection.connect(function(error) {if (error) console.log(error);});
 
 
-// Launch server
-app.listen(3000, function() {
-    console.log('Server is running on port 3000');
-});
-
+let session = require("express-session");
+app.use(session({
+    secret: 'my secret',
+    resave: false,
+    saveUninitialized: true
+    })
+);
 
 // Set route
 // Méthode HTTP 'get' dont on déclare le chemin et 2 paramètres
 app.get('/', (req, res) => {
     connection.query("select * from formation;", function(error, result) {
         if(error) console.log(error);
-        res.render('Labo6.ejs', {formations: result});
+        res.render('home.ejs', {formations: result});
     });
 }); 
+
+let routes = require('./routes');
+app.use('/', routes);
+
+// Show user session
+app.get('/user', (req, res) => {
+    res.send('Hello session ' + req.session.user);
+});
+
+// Logout endpoint
+app.get('/logout', function (req, res) {
+    req.session.destroy();
+    res.send('Logout success !');
+});
+
+var port = process.env.PORT || 3000;
+// Launch app to listen to specified port
+app.listen(port, function () {
+    console.log("Runnings on port " + port);
+});
