@@ -31,7 +31,7 @@
                     <td><%= formations[i].price %></td>
                     <td><%= formations[i].start %></td>
                     <td><%= formations[i].end %></td>
-                    <td><form action="/add" method="POST"><button id="Subscribe">S'inscrire</button></form></td>
+                    <td><a href="/add/<%= formations[i].idformation %>">S'inscrire</a></td>
                 </tr>
                 <% } %>
             </tbody>

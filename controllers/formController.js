@@ -16,7 +16,7 @@ exports.cart = function(req, res) {
     if (req.session.user != null) {
         connection.query("select * from cart;", function(error, result) {
             if(error) console.log(error);
-            res.render('cart.ejs', {formations: result});
+            res.render('cart.ejs', {cart: result});
         });
     }
     else {
@@ -25,5 +25,18 @@ exports.cart = function(req, res) {
 }
 
 exports.add = function(req, res) {
+    let i = req.params.i
+    connection.query("INSERT INTO cart SELECT * FROM formation WHERE idformation = ? ", i,function(error, result) {
+        if(error) console.log(error);
+    });
+    res.redirect('/');
+}
+
+// Delete task 
+exports.remove = function(req,res) {
+    let i = req.params.i;
+    connection.query("DELETE from cart WHERE idcart = ?;", i, function(error, result) {
+        if(error) console.log(error);
+    });
     res.redirect('/cart');
 }

@@ -4,8 +4,10 @@ let router = express.Router();
 let formController = require('./controllers/formController.js');
 
 router.post('/login', formController.login);
+router.get('/cart', formController.cart);
 router.post('/cart', formController.cart);
-router.post('/add', formController.add)
+router.get('/add/:i', formController.add);
+router.get('/remove/:i', formController.remove);
 
 router.post('/', (req, res) => {
     req.session.user = req.body.username;

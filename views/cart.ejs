@@ -20,14 +20,14 @@
                     <td>Fin</td>
                     <td></td>
                 </tr>
-                <% for (let i = 0; i < formations.length; i++) { %>
+                <% for (let i = 0; i < cart.length; i++) { %>
                 <tr>
-                    <td><%= formations[i].idformation %></td>
-                    <td><%= formations[i].name %></td>
-                    <td><%= formations[i].price %></td>
-                    <td><%= formations[i].start %></td>
-                    <td><%= formations[i].end %></td>
-                    <td><button id="Subscribe">S'inscrire</button></td>
+                    <td><%= cart[i].idcart %></td>
+                    <td><%= cart[i].name %></td>
+                    <td><%= cart[i].price %></td>
+                    <td><%= cart[i].start %></td>
+                    <td><%= cart[i].end %></td>
+                    <td><a href="/remove/<%= cart[i].idcart %>">Supprimer</a></td>
                 </tr>
                 <% } %>
             </tbody>
