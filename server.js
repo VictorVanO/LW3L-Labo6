@@ -39,6 +39,19 @@ app.get('/', (req, res) => {
 let routes = require('./routes');
 app.use('/', routes);
 
+var cookieParser = require('cookie-parser');
+app.use(cookieParser());
+
+app.get('/cookie', function(req, res){
+    res.cookie("cookie_name", "my_cookie_value").send("Cookie is set ");
+    });
+    app.use(cookieParser());
+
+app.get('/clearcookie', function(req, res) {
+    res.clearCookie('cookie_name');
+    res.send('Cookie deleted');
+    });
+    
 // Show user session
 app.get('/user', (req, res) => {
     res.send('Hello session ' + req.session.user);
@@ -49,6 +62,7 @@ app.get('/logout', function (req, res) {
     req.session.destroy();
     res.send('Logout success !');
 });
+
 
 var port = process.env.PORT || 3000;
 // Launch app to listen to specified port
