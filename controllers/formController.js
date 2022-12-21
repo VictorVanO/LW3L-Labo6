@@ -1,42 +1,25 @@
-// Database connection
-var mysql = require("mysql");
-var connection = mysql.createConnection({
-    host        : 'localhost',
-    user        : 'root',
-    password    : 'root',
-    database    : 'formations'
-});
-connection.connect(function(error) {if (error) console.log(error);});
+let User = require('../models/userModel.js');
 
-exports.login = function(req, res) {
-    res.render('login.ejs', {username: req.session.user, text:''});
+let userNumber = 0;
+let userList = [];
+
+exports.reservationForm = function(req, res) {
+    // let user = new User("Dupont", "Paul");
+    // userList.push(user);
+    userNumber += req.body.nbseat;
+    res.render('person.ejs', {userNumber: userNumber});
 }
 
-exports.cart = function(req, res) {
-    if (req.session.user != null) {
-        connection.query("select * from cart;", function(error, result) {
-            if(error) console.log(error);
-            res.render('cart.ejs', {cart: result});
-        });
-    }
-    else {
-        res.render('login.ejs', {username: req.session.user, text:'Commencez par vous connecter'})
-    }
+exports.validationForm = function(req, res) {
+    res.render('validation.ejs');
 }
 
-exports.add = function(req, res) {
-    let i = req.params.i
-    connection.query("INSERT INTO cart SELECT * FROM formation WHERE idformation = ? ", i,function(error, result) {
-        if(error) console.log(error);
-    });
+exports.confirmationForm = function(req, res) {
+    res.render('confirmation.ejs');
+}
+
+exports.cancelForm = function(req, res) {
+    userNumber = 0;
+    req.session.destroy();
     res.redirect('/');
-}
-
-// Delete task 
-exports.remove = function(req,res) {
-    let i = req.params.i;
-    connection.query("DELETE from cart WHERE idcart = ?;", i, function(error, result) {
-        if(error) console.log(error);
-    });
-    res.redirect('/cart');
 }

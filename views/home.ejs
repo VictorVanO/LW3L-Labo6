@@ -1,40 +1,51 @@
+<!DOCTYPE html>
 <html>
-    <head>
-        <title>Title</title>
-        <link rel="stylesheet" href="/css/style.css">
-    </head>
-    <body>
-        <h1>IT Academy</h1>
-        <h2>Formations disponibles</h2>
-        <div>
-            <form action="/cart" method="POST">
-                <button class="head-button" id="Panier">Voir le panier</button>
-            </form>
-            <form action="/login" method="POST">
-                <button class="head-button" id="Connecter">Se connecter</button>
-            </form>
-        </div>
-        <table>
-            <tbody>
-                <tr>
-                    <td>Id</td>
-                    <td>Nom</td>
-                    <td>Prix</td>
-                    <td>Début</td>
-                    <td>Fin</td>
-                    <td></td>
-                </tr>
-                <% for (let i = 0; i < formations.length; i++) { %>
-                <tr>
-                    <td><%= formations[i].idformation %></td>
-                    <td><%= formations[i].name %></td>
-                    <td><%= formations[i].price %></td>
-                    <td><%= formations[i].start %></td>
-                    <td><%= formations[i].end %></td>
-                    <td><a href="/add/<%= formations[i].idformation %>">S'inscrire</a></td>
-                </tr>
-                <% } %>
-            </tbody>
-        </table>
-    </body>
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/css/style.css">
+    <title>Réservation</title>
+</head>
+<body>
+    <div id="content">
+        <h1>Réservation</h1>
+        <form method="post" id="form1" action="/reservation">
+            <table>
+                <tbody>
+                    <tr>
+                        <td>
+                            <label for="destination">Destination</label>
+                        </td>
+                        <td>
+                            <input type="text" name="destination" required>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label for="nbseat">Nombre de places</label>
+                        </td>
+                        <td>
+                            <input type="number" name="nbseat" id="nbseat" required>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label for="assurance">Assurance</label>
+                        </td>
+                        <td>
+                            <input type="checkbox" name="assurance" id="assurance" >
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="submit" value="Etape suivante" formaction="/reservation/">
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </form>
+        <button id="bt_total">Caculer le total</button>
+        <div id="total"></div>
+    </div>
+    <script src="util.js"></script>
+</body>
 </html>
